@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 import { StyleSheet, Text, View,TouchableOpacity, Image,Platform, Dimensions } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer ,createSwitchNavigator } from 'react-navigation';
@@ -47,17 +47,12 @@ const stackNavigator = createStackNavigator(
     Main: {
       screen: MainTabNavigator,
       navigationOptions: (navigation) => ({
-        title: 'MindHug®',
-        headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+        title: 'Dronex®',
+        headerLeft: null,
         headerStyle: {
-          backgroundColor: '#98D9B7',
+          backgroundColor: '#000',
         },
         headerTintColor: '#fff',
-      }),
-    },
-    Blog: {
-      screen: BlogScreen,
-      navigationOptions: () => ({
       }),
     },
   },

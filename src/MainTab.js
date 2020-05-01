@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import HomeScreen from './Home';
 import EventsScreen from './Events';
-import MoreScreen from './More';
 
 const iconHome = require('../assets/tabbar/Home.png');
 const iconEvents = require('../assets/tabbar/calendar.png');
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   tabBarIconFocused: {
-    tintColor: "#98D9B7"
+    tintColor: "#000"
   },
   headerContainer: {
     height: 70,
@@ -52,21 +51,16 @@ export default createBottomTabNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        headerTintColor: '#4CDAE4',
+        headerTintColor: '#000',
       },
     },
     Events: {
       screen: EventsScreen,
       navigationOptions: {
-        headerTintColor: '#4CDAE4',
+        headerTintColor: '#000',
       },
     },
-    More: {
-      screen: MoreScreen,
-      navigationOptions: {
-        headerTintColor: '#4CDAE4',
-      },
-    },
+
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -81,10 +75,7 @@ export default createBottomTabNavigator(
           case 'Events':
             iconSource = iconEvents;
             break;
-          case 'More':
-            iconSource = iconMore;
-            break;
-          default:
+
             iconSource = iconHome;
         }
         return (
@@ -102,16 +93,16 @@ export default createBottomTabNavigator(
     animationEnabled: false,
     swipeEnabled: false,
     tabBarOptions: {
-      activeTintColor:'#4CDAE4',
+      activeTintColor:'#000',
       showLabel: false,
       style: {
         backgroundColor: "#fff",
         height:55,
         borderTopWidth: 4,
-        borderTopColor: '#98D9B7',
+        borderTopColor: '#000',
       },
       labelStyle: {
-        color: "#4CDAE4",
+        color: "#000",
         fontSize:13,
         marginTop:-10,
       },
