@@ -25,6 +25,8 @@ export default class HomeScreen extends Component {
       state:0,
       lat:0,
       long:0,
+      Dlat:0,
+      Dlong:0,
     };
   }
 
@@ -40,9 +42,9 @@ export default class HomeScreen extends Component {
           source={require('../assets/Logo.jpeg')}/>
         <Text style={{alignSelf:"center",fontStyle: 'italic',fontWeight:"bold", fontSize:17}}>Enter The Drop Location</Text>
         <TextInput placeholder="Latitude of the Drop" style={styles.textInput}  returnKeyType="done"
-          keyboardType="numeric" value={this.state.populationPwdB} onChangeText={(text) => this.setState({populationPwdB: text}) }/>
+          keyboardType="numeric" value={this.state.Dlat} onChangeText={(text) => this.setState({Dlat: text}) }/>
         <TextInput placeholder="Longitude of the Drop" style={styles.textInput}  returnKeyType="done"
-          keyboardType="numeric" value={this.state.populationPwdB} onChangeText={(text) => this.setState({populationPwdB: text}) }/>    
+          keyboardType="numeric" value={this.state.Dlong} onChangeText={(text) => this.setState({Dlong: text}) }/>    
         <TouchableOpacity
           onPress={() => this.setState({state:1})}
           style={{height:50,width:"90%", borderRadius:8, borderWidth:2, alignSelf:"center", justifyContent: 'center',marginTop:40}}
