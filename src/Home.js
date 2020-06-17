@@ -23,16 +23,37 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       state:0,
-      lat:0,
-      long:0,
-      Dlat:0,
-      Dlong:0,
+      latitude:0,
+      longitude:0,
+      DropLat:"",
+      DropLong:""
     };
   }
 
-  async componentDidMount() {this.fetchData();}
+  async componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+       (position) => {
+         this.setState({
+           latitude: position.coords.latitude,
+           longitude: position.coords.longitude,
+           error: null,
+         });
+         this.fetchData();
+       },
+       (error) => this.setState({ error: error.message }),
+       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+     );
+  }
 
   async fetchData() {}
+
+  CheckTextInput = () => {
+    if (this.state.DropLat == '' || this.state.DropLong == '') {
+        alert('Please Enter the Fields');
+      } else {
+        this.props.navigation.navigate("Map", {DropLong:this.state.DropLong, DropLat:this.state.DropLat});
+      }
+  };
 
   render() {
     return (
@@ -42,11 +63,11 @@ export default class HomeScreen extends Component {
           source={require('../assets/Logo.jpeg')}/>
         <Text style={{alignSelf:"center",fontStyle: 'italic',fontWeight:"bold", fontSize:17}}>Enter The Drop Location</Text>
         <TextInput placeholder="Latitude of the Drop" style={styles.textInput}  returnKeyType="done"
-          keyboardType="numeric" value={this.state.Dlat} onChangeText={(text) => this.setState({Dlat: text}) }/>
+          keyboardType="numeric" onChangeText={(text) => this.setState({DropLat: text}) }/>
         <TextInput placeholder="Longitude of the Drop" style={styles.textInput}  returnKeyType="done"
-          keyboardType="numeric" value={this.state.Dlong} onChangeText={(text) => this.setState({Dlong: text}) }/>    
+          keyboardType="numeric" onChangeText={(text) => this.setState({DropLong: text}) }/>    
         <TouchableOpacity
-          onPress={() => this.setState({state:1})}
+          onPress={this.CheckTextInput}
           style={{height:50,width:"90%", borderRadius:8, borderWidth:2, alignSelf:"center", justifyContent: 'center',marginTop:40}}
           underlayColor=''>
           <Text style={{alignSelf:"center",fontStyle: 'italic'}}>Request a Drone</Text>
@@ -80,7 +101,7 @@ const styles = StyleSheet.create({
     shadowOpacity:0.5,
   },
   textInput: {
-    width: 320,
+    width: "90%",
     height: 50,
     color: "#a9a9a9",
     borderRadius: 15,

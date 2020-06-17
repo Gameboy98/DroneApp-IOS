@@ -38,19 +38,6 @@ export default class BookingsScreen extends React.Component {
 
   async fetchData() {}
 
-  modal(){
-    return(
-      <Modal isVisible={this.state.visibleModal === 1}>
-          <View style={styles.modalContent}>
-          <TextInput placeholder="Full Name" style={{height:40, backgroundColor:"#fff",borderRadius:5, width:"90%", justifyContent:"center", margin:5, alignSelf:"center"}}  returnKeyType="done" keyboardType="email-address"/>
-          <TextInput placeholder="Mobile Number" style={{height:40, backgroundColor:"#fff",borderRadius:5, width:"90%", justifyContent:"center", margin:5, alignSelf:"center"}}  returnKeyType="done" keyboardType="numeric"/>
-          <TextInput placeholder="E-mail" style={{height:40, backgroundColor:"#fff",borderRadius:5, width:"90%", justifyContent:"center", margin:5, alignSelf:"center"}}  returnKeyType="done" keyboardType="email-address"/>
-          <TouchableOpacity onPress={() => this.setState({ visibleModal: null })} style={{height:40, backgroundColor:"#4CDAE4",borderRadius:5, width:"90%", justifyContent:"center", margin:5}}><Text style={{color:"#fff", alignSelf:"center"}}>Register</Text></TouchableOpacity>
-          </View>
-        </Modal>
-      );
-  }
-
   render() {
     const FirstRoute = () => (
       <View style={[styles.scene, { backgroundColor: '#000' }]}>
@@ -76,7 +63,6 @@ export default class BookingsScreen extends React.Component {
 
   const SecondRoute = () => (
     <View style={[styles.scene, { backgroundColor: '#fff',}]}>
-      {this.modal()}
       <FlatList
           style={{height:"100%"}}
           horizontal={false}
@@ -90,7 +76,7 @@ export default class BookingsScreen extends React.Component {
               <Text style={{alignSelf:"center", width:"90%", margin:10,fontWeight:"bold",fontSize:14}}>{item.tittle}</Text>
               <Text style={{alignSelf:"center", width:"90%",fontSize:14,fontStyle: 'italic'}}>{item.date}</Text>
               <Text style={{alignSelf:"center", width:"90%",marginBottom:10, fontSize:14, fontStyle: 'italic'}}>{item.time}</Text>
-              <TouchableOpacity style={{height:40, backgroundColor:"#a9a9a9", justifyContent:"center", margin:5}} onPress={() => this.setState({ visibleModal: 1 })}><Text style={{color:"#fff", alignSelf:"center"}}>Track Now</Text></TouchableOpacity>
+              <View style={{height:40, backgroundColor:"#a9a9a9", justifyContent:"center", margin:5}} onPress={() => this.setState({ visibleModal: 1 })}><Text style={{color:"#fff", alignSelf:"center"}}>Track Now</Text></View>
             </View>
           }
           keyExtractor={(item, index) => index.toString()}/>     

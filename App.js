@@ -8,34 +8,8 @@ const { width } = Dimensions.get('window');
                                                                                                 
 import SplashScreen from './src/Splash';
 import MainTabNavigator from './src/MainTab';
-import BlogScreen from './src/Blog';
-
-class NavigationDrawerStructure extends Component {
-  toggleDrawer = () => {
-    this.props.navigationProps.toggleDrawer();
-  };
-  render() {
-    return (
-      <View style={styles.iconRow}>
-        <TouchableOpacity
-         style={styles.button}
-         onPress={this.toggleDrawer.bind(this)}>
-        <MaterialIconsIcon name="dehaze" style={styles.icon} />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
-
-const DrawerNavigatorE = createDrawerNavigator({
-  Screen0: {
-    screen: MainTabNavigator,
-    navigationOptions: {
-      drawerLabel: 'Home',
-    },
-  },
-});
-
+import MapScreen from './src/Map';
+ 
 const stackNavigator = createStackNavigator(
   {
     SplashScreen: {
@@ -43,12 +17,22 @@ const stackNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null,
       }),
-    },
+    }, 
     Main: {
       screen: MainTabNavigator,
       navigationOptions: (navigation) => ({
         title: 'Dronex®',
         headerLeft: null,
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTintColor: '#fff',
+      }),
+    },
+    Map: {
+      screen: MapScreen,
+      navigationOptions: (navigation) => ({
+        title: 'Tracking',
         headerStyle: {
           backgroundColor: '#000',
         },
